@@ -104,3 +104,23 @@ nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column
 .mtc:checked ~ nav{display:flex}
 nav a{padding:12px 14px}
 }
+/* micro-interaction: ringan, menghormati pengaturan kurangi animasi */
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes drop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.hero>*{animation:rise .6s ease backwards}
+.hero>*:nth-child(2){animation-delay:.08s}
+.hero>*:nth-child(3){animation-delay:.16s}
+.hero>*:nth-child(4){animation-delay:.24s}
+.btn,.chip,nav a,.card,.card .im,.gal div,.gal a,.node,.st,.mt{transition:transform .25s ease,box-shadow .25s ease,filter .25s ease,background-color .25s ease}
+.btn:hover,.chip:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn:active,.chip:active,.mt:active{transform:scale(.96)}
+nav a:hover{transform:translateY(-1px)}
+.card:hover,.node:hover,.st:hover{transform:translateY(-5px);box-shadow:0 14px 30px rgba(0,0,0,.18)}
+.card:hover .im{transform:scale(1.05)}
+.gal div:hover,.gal a:hover{transform:scale(1.03);box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.mtc:checked + .mt{background:rgba(255,255,255,.32)}
+@media (max-width:760px){.mtc:checked ~ nav{animation:drop .22s ease}}
+@supports (animation-timeline:view()){
+.card,.node,.st,.vm{animation:rise linear backwards;animation-timeline:view();animation-range:entry 0% entry 100%}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
